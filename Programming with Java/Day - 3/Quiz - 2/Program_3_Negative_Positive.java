@@ -10,7 +10,6 @@ public class Program_3_Negative_Positive {
 		int n = s.nextInt();
 		Sorter c = new Sorter(s,n);
 		//Sorter c = new Sorter();
-		c.disper(1);
 		c.rearranger();
 		s.close();
 	}
@@ -20,7 +19,7 @@ public class Program_3_Negative_Positive {
 class Sorter
 {
 	int[] ar = new int[50];
-	int n,i;
+	int n,i,t=0;
 	//int n=9,i;
 	//int[] ar = {-12, 11, -13, -5, 6, -7, 5, -3, -6};
 	int[] ar2 = new int[50];
@@ -33,17 +32,7 @@ class Sorter
 			System.out.print("Value "+(i+1)+" : ");
 			ar[i] = s.nextInt();
 		}	
-	}
-	public void disper(int a)
-	{
-		if(a==1)
-		{
-			disp(ar);
-		}
-		else if(a==2)
-		{
-			disp(ar2);
-		}
+		disp(ar);
 	}
 	public void disp(int a[])
 	{
@@ -55,13 +44,14 @@ class Sorter
 	}
 	public void rearranger()
 	{
+		t=0;
 		negarange();
-		System.out.print("\n\nRearranged as Negative to Positve\n");
+		posarange();
+		System.out.print("\n\nRearranged as Negative to Positive\n");
 		disp(ar2);
 	}
 	public void negarange()
 	{
-		int t=0;
 		for(i=0;i<n;i++)
 		{
 			if(ar[i]<0)
@@ -70,9 +60,9 @@ class Sorter
 				t++;
 			}
 		}
-		posarange(t);
+		posarange();
 	}
-	public void posarange(int t)
+	public void posarange()
 	{
 		for(i=0;i<n;i++)
 		{
@@ -90,8 +80,6 @@ class Sorter
 
 
 /*
-The Output is
-
 Enter the Size of Array : 9
 Enter Values
 Value 1 : -12
@@ -106,7 +94,7 @@ Value 9 : -6
 
 The Array :  -12  11  -13  -5  6  -7  5  -3  -6 
 
-Rearranged as Negative to Positve
+Rearranged as Negative to Positive
 
 The Array :  -12  -13  -5  -7  -3  -6  11  6  5 
 */
