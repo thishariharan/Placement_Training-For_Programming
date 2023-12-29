@@ -33,7 +33,7 @@ class Employees
 	}
 	public double calculateSalary()
 	{		
-		return salary;
+		return basic;
 	}
 	public void printDetails()
 	{
@@ -48,7 +48,12 @@ class Manager extends Employees
 	{
 		super(i,n,"Manager");
 		this.bonus = b;
-		Salary(bonus);
+		this.calculateSalary();
+	}
+	public double calculateSalary()
+	{
+	    salary = basic + ((basic/100) * bonus);
+		return salary;		
 	}
 }
 
@@ -60,23 +65,28 @@ class Developer extends Employees
 	{
 		super(i,n,"Developer");
 		this.pl = p;
-		if((pl == "C") || (pl == "c++"))
-		{
-			bonus = 15;
-		}
-		else if(pl == "Python")
-		{
-			bonus = 12;
-		}
-		else if(pl == "Java")
-		{
-			bonus = 16;
-		}
-		else if(pl == "Others")
-		{
-			bonus = 10;
-		}
-		Salary(bonus);
+		this.calculateSalary();
+	}
+	public double calculateSalary()
+	{
+	    if ("C".equals(pl) || "c++".equals(pl)) 
+	    {
+	        bonus = 15;
+	    } 
+	    else if ("Python".equals(pl)) 
+	    {
+	        bonus = 12;
+	    } 
+	    else if ("Java".equals(pl)) 
+	    {
+	        bonus = 16;
+	    } 
+	    else if ("Others".equals(pl)) 
+	    {
+	        bonus = 10;
+	    }
+	    salary = basic + ((basic/100) * bonus);
+		return salary;		
 	}
 }
 
