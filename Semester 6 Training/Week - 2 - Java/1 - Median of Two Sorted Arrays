@@ -1,0 +1,54 @@
+class Solution {
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int m = nums1.length,n = nums2.length;
+        if (m > n)
+        {
+            return findMedianSortedArrays(nums2, nums1);
+        }        
+        int leflen = (m + n + 1) / 2;
+        int l = 0;
+        int r = m;        
+        while (l <= r) {
+            int x = l + (r - l) / 2;
+            int y = leflen - x;            
+            int maxX = (x == 0) ? Integer.MIN_VALUE : nums1[x - 1];
+            int minX = (x == m) ? Integer.MAX_VALUE : nums1[x];            
+            int maxY = (y == 0) ? Integer.MIN_VALUE : nums2[y - 1];
+            int minY = (y == n) ? Integer.MAX_VALUE : nums2[y];            
+            if (maxX <= minY && maxY <= minX) {
+                if ((m + n) % 2 == 0) 
+                { 
+                    return (double)(Math.max(maxX, maxY) + Math.min(minX, minY)) / 2;
+                } 
+                else 
+                { 
+                    return (double)Math.max(maxX, maxY);
+                }
+            } 
+            else if (maxX > minY) 
+            {
+                r = x - 1;
+            } 
+            else 
+            {
+                l = x + 1;
+            }
+        }
+        throw new IllegalArgumentException();
+    }
+}
+
+
+
+
+
+Example 1:
+
+Input: nums1 = [1,3], nums2 = [2]
+Output: 2.00000
+Explanation: merged array = [1,2,3] and median is 2.
+Example 2:
+
+Input: nums1 = [1,2], nums2 = [3,4]
+Output: 2.50000
+Explanation: merged array = [1,2,3,4] and median is (2 + 3) / 2 = 2.5.
